@@ -1,0 +1,117 @@
+/* Userdashboard */
+/* @media only screen and (max-width:990px) {
+    .sidebar{
+        display: none;
+        width: 80% !important;
+        background:white;
+        height: 100vh;
+        position: fixed;
+        padding-top: 20px;
+    }
+    .content{
+        margin-left: 0% !important;
+    }
+}
+.sidebar{
+    padding-top: 20px;
+    width: 18%;
+    background: white;
+    height: 100%;
+    position: fixed;
+  }
+  .sidebar a{
+    display: block;
+    width: 100%;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: black;
+  }
+  .sidebar a:hover{
+    background-color: rgb(244 244 245);
+  }
+  .sidebar .divider{
+    height: .5px;
+    width: 100%;
+    background-color: rgb(244 244 245);
+    margin-top: 10px;
+  }
+  body{
+    background-color: rgb(244 244 245);
+  }
+  .content{
+    margin-left: 18%;
+    
+  }
+  .crossBtn{
+    position: absolute;
+    top: 0;
+    right: 35px;
+    font-size: x-large;
+    font-weight: bolder;
+    text-align: right;
+    cursor: pointer;
+  } */
+  /* Userdashboard */
+  .sidebar {
+    padding-top: 20px;
+    width: 18%;
+    background: white;
+    height: 100%;
+    position: fixed;
+  }
+  
+  .content {
+    margin-left: 18%;
+  }
+  
+  /* Media query for smaller screens */
+  @media only screen and (max-width: 990px) {
+    .sidebar {
+      display: none;
+      width: 80% !important;
+      background: white;
+      height: 100vh;
+      position: fixed;
+      padding-top: 20px;
+    }
+  
+    .content {
+      margin-left: 0% !important;
+    }
+  
+    .sidebar.active {
+      display: block;
+    }
+  }
+  
+  .sidebar a {
+    display: block;
+    width: 100%;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .sidebar a:hover {
+    background-color: rgb(244 244 245);
+  }
+  
+  .sidebar .divider {
+    height: .5px;
+    width: 100%;
+    background-color: rgb(244 244 245);
+    margin-top: 10px;
+  }
+  
+  body {
+    background-color: rgb(244 244 245);
+  }
+  
+  .crossBtn {
+    position: absolute;
+    top: 0;
+    right: 35px;
+    font-size: x-large;
+    font-weight: bolder;
+    cursor: pointer;
+  }

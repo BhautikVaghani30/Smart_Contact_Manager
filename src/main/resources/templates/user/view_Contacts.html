@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="user/_Base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+</head>
+<body>
+  <section>
+   <div class="container">
+
+     <div th:each="c : ${contacts}" class="row my-4">
+       <!-- Left side: Image -->
+       <div class="col-md-2">
+         <img src="C:\Users\Administrator\Desktop\spring project\smart_contect_manager\src\main\resources\static\img\default.webp" class="img-fluid" alt="Left Side Image">
+        </div>
+        
+        <!-- Right side: Text -->
+        <div class="col-md-3">
+          <p class="m-0" ><b>cid : </b>scm2023_<samp th:text="${c.cId}"></samp></p>
+          <p class="m-0">Name : <samp th:text="${c.name}"></samp></p>
+          <p class="m-0">Email : <samp th:text="${c.email}"></samp></p>
+          <p class="m-0">Contact : <samp th:text="${c.phone}"></samp></p>
+        </div>
+        <div class="col-md-6">
+          <p th:text="${c.description}"></p>
+        </div>
+        <div class="col-md-1">
+          <a class="btn btn-sm btn-outline-primary my-1" href="">Update</a>
+          <a class="btn btn-sm btn-outline-danger  my-1" th:href="@{'remove-contact/' + ${c.cId}}">Remove</a>
+        </div>
+      </div>
+      <nav aria-label="Page navigation example" style="position:fixed; bottom:5px " th:if="${contacts}">
+        <ul class="pagination">
+          <li class="page-item"  th:if="${currentPage+1!=1}"><a class="page-link" href="#" th:href="@{'/user/view-contacts/'+${currentPage-1}}">Previous</a></li>
+          <li th:classappend="${currentPage==i-1?'active':''}" th:each="i : ${#numbers.sequence( 1,totalPage)}"  class="page-item"><a class="page-link" href="#" th:href="@{'/user/view-contacts/'+${i-1}}"><span th:text="${i}"></span></a></li>
+          <li class="page-item" th:if="${currentPage+1!=totalPage}"><a class="page-link" href="#" th:href="@{'/user/view-contacts/'+${currentPage+1}}">Next</a></li>
+        </ul>
+      </nav> 
+   
+    
+
+</section>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+</html>
