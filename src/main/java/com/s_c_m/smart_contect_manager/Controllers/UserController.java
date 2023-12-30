@@ -133,7 +133,7 @@ public class UserController {
     // -------------------------------------------------Process contacts------------------------------------------------------------
     // view contacts
 
-    @GetMapping("/view-contacts/{page}")
+    @GetMapping("/view_contacts/{page}")
     public String viewContacts(
         Model m,
         @PathVariable("page") Integer page,
@@ -145,16 +145,12 @@ public class UserController {
             m.addAttribute("contacts", contact);
             m.addAttribute("currentPage", page);
             m.addAttribute("totalPage", contact.getTotalPages());
-        return "user/view_Contacts";
+        return "user/view_contacts";
     }
 
 
      // -------------------------------------------------Process contacts------------------------------------------------------------
     // view contacts
-   @GetMapping("/remove-contact/{cid}")
-public String removeContact(@PathVariable int cid) {
-        this.contactRepository.deleteById(cid);
-        return "user/view_Contacts";
-    }
+  
     
 }
