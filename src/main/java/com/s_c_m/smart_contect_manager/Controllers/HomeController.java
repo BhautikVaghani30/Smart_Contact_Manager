@@ -95,12 +95,7 @@ public class HomeController {
                 model.addAttribute("checked", true);
             }
 
-            //  if (result.hasErrors()) {
-            //     System.out.println(result.toString());
-            //     model.addAttribute("user", user);
-            //     return "signup";
-            // }
-
+        
 
             // Set some default value of User field
             user.setRole("ROLE_USER");

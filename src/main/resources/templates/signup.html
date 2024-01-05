@@ -58,11 +58,13 @@
                                 <input type="password" name="re-pwd" id="re_pass" placeholder="Repeat your password"
                                     th:value="${pwd}" />
                             </div>
-
                             <div class="form-group">
-                                <textarea class="form-control" name="about" id="exampleFormControlTextarea1"
-                                    th:text="${user.about}" rows="3" placeholder="Write About Yourself"></textarea>
+                                <label for="re-pass"><i class="fa fa-phone" ></i></label>
+                                <input type="tel" name="contact" id="re_pass" placeholder="Enter your Contact Number"
+                                    th:value="${user.contact}" />
                             </div>
+
+                          
 
                             <!-- <div class="form-group">
                                 <input type="checkbox" name="agreeterm" id="agree-term" th:checked="${checked}" class="agree-term" />

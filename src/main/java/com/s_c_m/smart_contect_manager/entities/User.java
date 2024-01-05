@@ -22,8 +22,15 @@ public class User {
     private String role;
     private boolean enabled;
     private String imageUrl;
-    @Column(length = 500)
-    private String about;
+    private String contact;
+     @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
+                + ", enabled=" + enabled + ", imageUrl=" + imageUrl + ", contact=" + contact + ", contacts=" + contacts
+                + "]";
+    }
+
+   
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Contact> contacts = new ArrayList<>();
@@ -88,12 +95,12 @@ public class User {
         this.imageUrl = imageUrl;
     }
 
-    public String getAbout() {
-        return about;
+     public String getContact() {
+        return contact;
     }
 
-    public void setAbout(String about) {
-        this.about = about;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public List<Contact> getContacts() {
@@ -104,11 +111,6 @@ public class User {
         this.contacts = contacts;
     }
 
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
-                + ", enabled=" + enabled + ", imageUrl=" + imageUrl + ", about=" + about + ", contacts=" + contacts
-                + "]";
-    }
+   
 
 }

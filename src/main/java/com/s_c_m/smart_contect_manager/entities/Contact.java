@@ -83,11 +83,11 @@ public class Contact {
         this.phone = phone;
     }
 
-    public String getphoto() {
+    public String getImage() {
         return image;
     }
 
-    public void setphoto(String image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

@@ -69,3 +69,40 @@
     return true;
 }
 console.log("hello");
+
+
+function deleteContact(cid){
+  swal({
+    title: "Are you sure?",
+    text: "You want to delete this contact...?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      window.location = "/user/delete/" + cid;
+    } else {
+      swal("Your Contact is safe !!");
+    }
+  });
+}
+
+function displayImage(input) {
+  var preview = document.getElementById('preview');
+  var imagePreview = document.getElementById('imagePreview');
+
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+          preview.src = e.target.result;
+          imagePreview.style.display = 'block';
+      };
+
+      reader.readAsDataURL(input.files[0]);
+  } else {
+      preview.src = '#';
+      imagePreview.style.display = 'none';
+  }
+}
