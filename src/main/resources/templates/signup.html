@@ -15,10 +15,16 @@
 </head>
 
 <body>
+    <!-- main div start -->
     <div class="main">
-        <!-- Sign up form -->
+
+        <!-- section start -->
         <section class="signup my-3">
+
+            <!-- container start -->
             <div class="container">
+
+                <!-- error heandler start -->
                 <div class="error">
                     <div th:if="${session.message}" th:classappend="${session.message.type}" id="myerror"
                         class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -28,74 +34,95 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <!-- error heandler end -->
+
                 </div>
+
                 <div class="signup-content">
+
                     <div class="signup-form">
+
                         <h2 class="form-title">Sign up</h2>
 
+                        <!-- Sign up form -->
                         <form method="POST" th:action="@{/do_ragister}" th:object="${user}" class="register-form"
                             id="register-form">
+
+                            <!-- user Name  -->
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name "></i></label>
                                 <input type="text" name="name" id="name" placeholder="Your Name"
                                     th:value="${user.name}" />
                             </div>
 
+                            <!-- user email  -->
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
                                 <input type="email" name="email" id="email" placeholder="Your Email"
                                     th:value="${user.email}" />
                             </div>
 
+                            <!-- user password  -->
                             <div class="form-group">
                                 <label for="pass"><i class="zmdi zmdi-lock"></i></label>
                                 <input type="password" name="password" id="pass" placeholder="Password"
                                     th:value="${user.password}" />
                             </div>
 
+                            <!-- user ReEnter-password -->
                             <div class="form-group">
                                 <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
                                 <input type="password" name="re-pwd" id="re_pass" placeholder="Repeat your password"
                                     th:value="${pwd}" />
                             </div>
+
+                            <!-- user phone -->
                             <div class="form-group">
-                                <label for="re-pass"><i class="fa fa-phone" ></i></label>
+                                <label for="re-pass"><i class="zmdi zmdi-phone"></i></label>
                                 <input type="tel" name="contact" id="re_pass" placeholder="Enter your Contact Number"
                                     th:value="${user.contact}" />
                             </div>
 
-                          
-
-                            <!-- <div class="form-group">
-                                <input type="checkbox" name="agreeterm" id="agree-term" th:checked="${checked}" class="agree-term" />
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                            </div>
-                         -->
-
+                            <!-- Terms & conditions  -->
                             <div class="form-group">
+
                                 <input type="checkbox" name="agreeterm" id="agree-term" th:checked="${checked}"
                                     class="agree-term" />
+
                                 <label for="agree-term" class="label-agree-term">
                                     <span><span></span></span>I agree to all statements in
                                     <a href="#" class="term-service">Terms of service</a>
                                 </label>
+
                             </div>
 
+                            <!-- submit button -->
                             <div class="form-group form-button">
                                 <input type="submit" name="signup" id="signup" class="form-submit" value="Register" />
                             </div>
+
                         </form>
+                        <!-- form end -->
+
+                        <!-- right said image start -->
+                        <div class="signup-image">
+                            <figure>
+                                <img src="images/signup-image.jpg" alt="sing up image" />
+                            </figure>
+                            <a th:href="@{/signin}" class="signup-image-link">I am already member</a>
+                        </div>
+                        <!-- right said image end -->
+
                     </div>
-                    <div class="signup-image">
-                        <figure>
-                            <img src="images/signup-image.jpg" alt="sing up image" />
-                        </figure>
-                        <a th:href="@{/signin}" class="signup-image-link">I am already member</a>
-                    </div>
+
                 </div>
-            </div>
+                <!-- container end -->
+
         </section>
+        <!-- end section -->
+
     </div>
+    <!-- main div end -->
 
     <!-- JS -->
     <script src="vendor/jquery/jquery.min.js"></script>

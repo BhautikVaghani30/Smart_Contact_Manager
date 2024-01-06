@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/_Base::layout(~{::section})">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Toggle Example</title>
+  <!-- Add Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <!-- section start -->
+  <section>
+
+    <!-- error msg div start -->
+    <div class="error">
+
+      <div th:if="${session.message}" th:classappend="${session.message.type}" id="myerror"
+        class="alert alert-warning alert-dismissible fade show" role="alert">
+
+        <p th:text="${session.message.content}"></p>
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+
+          <span aria-hidden="true">&times;</span>
+
+        </button>
+
+      </div>
+
+    </div>
+    <!-- error msg div end -->
+
+    <!-- password change fields start -->
+    <div class="container mx-auto">
+
+      <!-- form start -->
+      <form th:action="@{/user/change-password}" method="post">
+
+        <!-- old Password start-->
+        <div class="form-group">
+          <label for="oldPassword">Old Password</label>
+
+          <div class="input-group">
+            <input type="password" class="form-control" id="oldPassword" name="old-password"
+              placeholder="Enter old password">
+            <div class="input-group-append">
+              <span class="input-group-text" id="toggleOldPassword">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+
+        </div>
+        <!-- old Password end-->
+
+        <!-- new Password start-->
+        <div class="form-group">
+
+          <label for="newPassword">New Password</label>
+
+          <div class="input-group">
+            <input type="password" class="form-control" id="newPassword" name="new-password"
+              placeholder="Enter new password">
+            <div class="input-group-append">
+              <span class="input-group-text" id="toggleNewPassword">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+
+        </div>
+        <!-- new Password end-->
+
+        <!-- Re-Enter Password start-->
+        <div class="form-group">
+
+          <label for="rePassword">Re-Password</label>
+
+          <div class="input-group">
+            <input type="password" class="form-control" id="rePassword" name="re-new-password"
+              placeholder="Re-enter new password">
+            <div class="input-group-append">
+              <span class="input-group-text" id="toggleRePassword">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+          <!-- Re-Enter Password end-->
+
+        </div>
+        <!-- password change fields end -->
+
+        <!-- submit and reset button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-warning">Reset</button>
+
+
+      </form>
+      <!-- end from -->
+
+    </div>
+
+  </section>
+  <!-- end section -->
+
+  <!-- Add Bootstrap JS and jQuery script links -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Add Font Awesome CSS link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+</body>
+
+</html>

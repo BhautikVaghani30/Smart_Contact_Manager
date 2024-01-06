@@ -1,71 +1,105 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="user/_Base::layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/_Base::layout(~{::section})">
+
 <head>
-    <meta charset="UTF-8">
-    <title th:text="${title}"></title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <meta charset="UTF-8">
+  <title th:text="${title}"></title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 </head>
+
 <body>
+  <!-- section start -->
   <section>
+
+    <!-- container start -->
     <div class="container">
+
+      <!-- error start -->
       <div class="error">
         <div th:if="${session.msg}" th:classappend="${session.msg.type}" id="myerror"
-            class="alert alert-warning alert-dismissible fade show" role="alert">
-            <p th:text="${session.msg.content}"></p>
+          class="alert alert-dismissible fade show" role="alert">
+          <p th:text="${session.msg.content}"></p>
 
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-    </div>
-
+      </div>
+      <!-- error end -->
+      <!-- row start -->
       <div th:each="c : ${contacts}" class="row my-4">
-        <!-- Left side: Image -->
+
+        <!-- Left side: Image  and first column start -->
         <div class="col-md-2">
-          <img th:src="@{'/img/'+${c.image}}" width="100px" height="100px" class="rounded-circle img-thumbnail" alt="Left Side Image">
+          <img th:src="@{'/img/'+${c.image}}" width="100px" height="100px" class="rounded-circle img-thumbnail"
+            alt="Left Side Image">
         </div>
-       
-       <!-- Right side: Text -->
-       <div class="col-md-3">
-         <p class="m-0" ><b>Contact-id : </b><a th:href="@{'/user/'+${c.cId}+'/contact'}">scm2023_<samp th:text="${c.cId}"></samp></a></p>
-         <p class="m-0">Name : <samp th:text="${c.name}"></samp></p>
-         <p class="m-0">Email : <samp th:text="${c.email}"></samp></p>
-         <p class="m-0">Contact : <samp th:text="${c.phone}"></samp></p>
-       </div>
-       <div class="col-md-6">
-         <p th:utext="${c.description}"></p>
-       </div>
-       <div class="col-md-1 ">
-        <div class="d-flex justify-content-end align-items-center">
-          <!-- <a th:href="@{'/user/update/'+${c.cId}}" class="btn btn-outline-primary"><i class="fas fa-edit"></i></a> -->
+        <!-- Left side: Image  and first column end -->
 
-          <form th:action="@{'/user/update-contact/'+${c.cId}}" method="post">
-            <button type="submit" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></button>
-          </form>
-
-          <a th:onclick="|deleteContact(${c.cId})|" class="btn btn-outline-danger btn-sm ms-3"><i class="fa fa-trash" aria-hidden="true"></i></a>
-      </div>
+        <!-- center side: Text secound column start-->
+        <div class="col-md-3">
+          <p class="m-0"><b>Contact-id : </b><a th:href="@{'/user/'+${c.cId}+'/contact'}">scm2023_<samp
+                th:text="${c.cId}"></samp></a></p>
+          <p class="m-0">Name : <samp th:text="${c.name}"></samp></p>
+          <p class="m-0">Email : <samp th:text="${c.email}"></samp></p>
+          <p class="m-0">Contact : <samp th:text="${c.phone}"></samp></p>
         </div>
+        <!-- center side: secound column end-->
+
+        <!-- right side: discription and third column start -->
+        <div class="col-md-6">
+          <p th:utext="${c.description}"></p>
+        </div>
+        <!-- right side: discription and third column end -->
+
+        <!-- fourth column start -->
+        <div class="col-md-1 ">
+
+          <!-- container start -->
+          <div class="d-flex justify-content-end align-items-center">
+            <!-- update form start -->
+            <form th:action="@{'/user/update-contact/'+${c.cId}}" method="post">
+              <button type="submit" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></button>
+            </form>
+            <!-- update form end -->
+
+            <!-- deletre link start -->
+            <a th:onclick="|deleteContact(${c.cId})|" class="btn btn-outline-danger btn-sm ms-3"><i class="fa fa-trash"
+                aria-hidden="true"></i></a>
+            <!-- deletre link end -->
+
+          </div>
+          <!-- container end -->
+
+        </div>
+        <!-- fourth column end -->
+
+        <!-- pagination start -->
+        <nav aria-label="Page navigation example" style="position:fixed; bottom:5px " th:if="${contacts}">
+          <ul class="pagination">
+            <li class="page-item" th:if="${currentPage+1!=1}"><a class="page-link" href="#"
+                th:href="@{'/user/view_contacts/'+${currentPage-1}}">Previous</a></li>
+            <li th:classappend="${currentPage==i-1?'active':''}" th:each="i : ${#numbers.sequence( 1,totalPage)}"
+              class="page-item"><a class="page-link" href="#" th:href="@{'/user/view_contacts/'+${i-1}}"><span
+                  th:text="${i}"></span></a></li>
+            <li class="page-item" th:if="${currentPage+1!=totalPage}"><a class="page-link" href="#"
+                th:href="@{'/user/view_contacts/'+${currentPage+1}}">Next</a></li>
+          </ul>
+        </nav>
+        <!-- pagination end -->
+
       </div>
-      <nav aria-label="Page navigation example" style="position:fixed; bottom:5px " th:if="${contacts}">
-        <ul class="pagination">
-          <li class="page-item"  th:if="${currentPage+1!=1}"><a class="page-link" href="#" th:href="@{'/user/view_contacts/'+${currentPage-1}}">Previous</a></li>
-          <li th:classappend="${currentPage==i-1?'active':''}" th:each="i : ${#numbers.sequence( 1,totalPage)}"  class="page-item"><a class="page-link" href="#" th:href="@{'/user/view_contacts/'+${i-1}}"><span th:text="${i}"></span></a></li>
-          <li class="page-item" th:if="${currentPage+1!=totalPage}"><a class="page-link" href="#" th:href="@{'/user/view_contacts/'+${currentPage+1}}">Next</a></li>
-        </ul>
-      </nav>
-    </div>
+      <!-- container end -->
 
-   
-    
+  </section>
+  <!-- section end -->
 
-</section>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
-    
+
 
 </body>
+
 </html>

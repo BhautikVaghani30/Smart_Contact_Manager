@@ -1,181 +1,141 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns:th="http://www.thymeleaf.org"
-  th:replace="user/_Base::layout(~{::section})"
->
-  <head>
-    <meta charset="UTF-8" />
-    <title th:text="${title}"></title>
-    <link
-      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-      rel="stylesheet"
-      id="bootstrap-css"
-    />
-  </head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/_Base::layout(~{::section})">
 
-  <body>
-    <section>
+<head>
+  <meta charset="UTF-8" />
+  <title th:text="${title}"></title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+</head>
 
-<!-- ---------------------------------------------------------------------------------------------------------------- -->
+<body>
 
-      <div class="container">
-        <form 
-            novalidate
-            th:action="@{/user/process-update}"
-            th:object="${contact}" 
-            method="post" 
-            enctype="multipart/form-data"
-            
+  <!-- section start -->
+  <section>
 
-            >
-            <div class="error">
-              <div th:if="${session.message}" th:classappend="${session.message.type}" id="myerror"
-                  class="alert alert-warning alert-dismissible fade show" role="alert">
-                  <p th:text="${session.message.content}"></p>
+    <!-- ---------------------------------------------------------------------------------------------------------------- -->
+    <!-- container start -->
+    <div class="container">
 
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
+      <!-- form start -->
+      <form novalidate th:action="@{/user/process-update}" th:object="${contact}" method="post"
+        enctype="multipart/form-data">
+
+        <!-- error div start -->
+        <div class="error">
+          <div th:if="${session.message}" th:classappend="${session.message.type}" id="myerror"
+            class="alert alert-warning alert-dismissible fade show" role="alert">
+            <p th:text="${session.message.content}"></p>
+
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-<!-- ---------------------------------------------------------------------------------------------------------------- -->
-            <!-- Contact id -->
+        </div>
+        <!-- error div end -->
+
+
+        <!-- ---------------------------------------------------------------------------------------------------------------- -->
+        <!-- Contact id -->
+        <div class="form-group">
+          <input type="hidden" name="cId" th:value="${contact.cId}" />
+        </div>
+
+        <!-- ---------------------------------------------------------------------------------------------------------------- -->
+        <!-- Contact name -->
+        <div class="form-group">
+          <label for="name"><i class="fa-solid fa-plus" style="margin-right: 7px;"></i>Name:</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name"
+            th:value="${contact.name}" required />
+        </div>
+
+        <!-- ---------------------------------------------------------------------------------------------------------------- -->
+        <!-- Secound name -->
+        <div class="form-group">
+          <label for="secondname"> <i class="fa-solid fa-user" style="margin-right: 7px;"></i>Second Name:</label>
+          <input type="text" class="form-control" id="secondname" name="secoundName"
+            placeholder="Enter Your Secound Name" th:value="${contact.secoundName}" required />
+        </div>
+
+        <!-- ---------------------------------------------------------------------------------------------------------------- -->
+        <!-- Contact Number -->
+        <div class="form-group">
+          <label for="phone"><i class="fa fa-phone " style="margin-right: 7px;" aria-hidden="true"></i>Phone:</label>
+          <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Your Contact Number"
+            th:value="${contact.phone}" required />
+        </div>
+
+        <!-- ---------------------------------------------------------------------------------------------------------------- -->
+        <!-- Email name -->
+        <div class="form-group">
+          <label for="workemail"><i class="fas fa-envelope" style="margin-right: 7px;"></i>Enter Email:</label>
+          <input type="email" class="form-control" id="workemail" name="email" placeholder="Enter Your Email"
+            th:value="${contact.email}" required />
+        </div>
+
+        <!-- ---------------------------------------------------------------------------------------------------------------- -->
+        <!-- Work name -->
+        <div class="form-group">
+          <label for="workemail"><i class="fa-solid fa-briefcase" style="margin-right: 7px;"></i>Work:</label>
+          <input type="text" class="form-control" id="work" name="work" placeholder="Enter Your Work"
+            th:value="${contact.work}" required />
+        </div>
+
+        <!-- ---------------------------------------------------------------------------------------------------------------- -->
+        <!-- Image  -->
+        <div class="row">
+          <div class="col-md-3">
+
             <div class="form-group">
-              <input
-                type="hidden"
-                name="cId"
-                th:value="${contact.cId}"
-              />
+              <label for="photo"><i class="fa-solid fa-image" style="margin-right: 7px;"></i> Image:</label>
+              <input type="file" class="form-control-file" id="photo" name="file" th:value="${contact.image}" />
             </div>
-  
-          
-
-<!-- ---------------------------------------------------------------------------------------------------------------- -->
-            <!-- Contact name -->
-          <div class="form-group">
-            <label for="name"><i class="fa-solid fa-plus" style="margin-right: 7px;"></i>Name:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              name="name"
-              placeholder="Enter Your Name"
-              th:value="${contact.name}"
-              required
-            />
           </div>
 
-<!-- ---------------------------------------------------------------------------------------------------------------- -->
-          <!-- Secound name -->
-          <div class="form-group">
-            <label for="secondname"> <i class="fa-solid fa-user" style="margin-right: 7px;" ></i>Second Name:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="secondname"
-              name="secoundName"
-              placeholder="Enter Your Secound Name"
-              th:value="${contact.secoundName}"
-              required
-            />
+          <!-- image start -->
+          <div class="col-md-3 text-center mt-3">
+
+            <img th:src="@{'/img/'+${contact.image}}" width="100px" height="100px" class="rounded-circle img-thumbnail"
+              alt="Left Side Image">
+
           </div>
+          <!-- image start -->
 
-<!-- ---------------------------------------------------------------------------------------------------------------- -->          
-           <!-- Contact Number -->
-          <div class="form-group">
-            <label for="phone"><i class="fa fa-phone " style="margin-right: 7px;" aria-hidden="true" ></i>Phone:</label>
-            <input
-              type="tel"
-              class="form-control"
-              id="phone"
-              name="phone"
-              placeholder="Enter Your Contact Number"
-              th:value="${contact.phone}"
-              required
-            />
-          </div>
+        </div>
 
-<!-- ---------------------------------------------------------------------------------------------------------------- -->
-           <!-- Email name -->
-           <div class="form-group">
-            <label for="workemail"><i class="fas fa-envelope" style="margin-right: 7px;"></i>Enter Email:</label>
-            <input
-              type="email"
-              class="form-control"
-              id="workemail"
-              name="email"
-              placeholder="Enter Your Email"
-              th:value="${contact.email}"
-              required
-            />
-          </div>
+        <!-- ---------------------------------------------------------------------------------------------------------------- -->
+        <!-- Enter somthing about Contact number -->
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea class="form-control" id="about" rows="3" th:utext="${contact.description}" name="description"
+            placeholder="Enter Contact Description"></textarea>
+        </div>
 
-<!-- ---------------------------------------------------------------------------------------------------------------- -->
-           <!-- Work name -->
-           <div class="form-group">
-            <label for="workemail"><i class="fa-solid fa-briefcase" style="margin-right: 7px;"></i>Work:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="work"
-              name="work"
-              placeholder="Enter Your Work"
-              th:value="${contact.work}"
-              required
-            />
-          </div>
+        <!-- ---------------------------------------------------------------------------------------------------------------- -->
+        <!-- submit button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
 
-<!-- ---------------------------------------------------------------------------------------------------------------- -->
-           <!-- Image  -->
-           <!-- todo -->
-           <div class="row">
-              <div class="col-md-3">
+      </form>
+      <!-- form end -->
 
-                <div class="form-group">
-                  <label for="photo"><i class="fa-solid fa-image" style="margin-right: 7px;"></i> Image:</label>
-                  <input
-                  type="file"
-                  class="form-control-file"
-                  id="photo"
-                  name="file"
-                  th:value="${contact.image}"
-                  
-                  />
-                </div>
-              </div>
-              <div class="col-md-3 text-center mt-3">
+    </div>
+    <!-- container end -->
 
-                  <img th:src="@{'/img/'+${contact.image}}" width="100px" height="100px" class="rounded-circle img-thumbnail" alt="Left Side Image">
-
-                </div>
-              </div>
-           </div>
-          
-
-<!-- ---------------------------------------------------------------------------------------------------------------- -->
-          <!-- Enter somthing about Contact number -->
-          <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea class="form-control" id="about" rows="3"   th:utext="${contact.description}" name="description" placeholder="Enter Contact Description"></textarea>
-          </div>
-<!-- ---------------------------------------------------------------------------------------------------------------- -->
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
-
-      <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> 
-		
-		
-		<!-- Help tiny.cloud for textarea  -->
-	 <script>
+    <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
+    <!-- Help tiny.cloud for textarea  -->
+    <!-- <script>
       tinymce.init({
         selector: '#mytextarea'
       });
-    </script>
-    </section>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
-  </body>
+    </script> -->
+
+
+  </section>
+  <!-- section end -->
+
+
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</body>
+
 </html>

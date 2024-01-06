@@ -106,3 +106,27 @@ function displayImage(input) {
       imagePreview.style.display = 'none';
   }
 }
+
+$(document).ready(function () {
+  // Toggle password visibility
+  $("#toggleOldPassword").click(function () {
+    togglePasswordVisibility("#oldPassword");
+  });
+  $("#toggleNewPassword").click(function () {
+    togglePasswordVisibility("#newPassword");
+  });
+  $("#toggleRePassword").click(function () {
+    togglePasswordVisibility("#rePassword");
+  });
+
+  function togglePasswordVisibility(passwordFieldId) {
+    var passwordField = $(passwordFieldId);
+    var fieldType = passwordField.attr("type");
+    if (fieldType === "password") {
+      passwordField.attr("type", "text");
+    } else {
+      passwordField.attr("type", "password");
+    }
+  }
+});
+

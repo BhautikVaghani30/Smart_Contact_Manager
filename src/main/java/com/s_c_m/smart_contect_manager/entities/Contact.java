@@ -5,13 +5,13 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-
 @Entity
 public class Contact {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int cId;
-   
+
     @NotBlank(message = "Name is required")
     private String name;
 
@@ -33,7 +33,6 @@ public class Contact {
 
     @ManyToOne
     private User user;
-
 
     public int getcId() {
         return cId;
@@ -109,10 +108,11 @@ public class Contact {
 
     // @Override
     // public String toString() {
-    //     return "Contact [cId=" + cId + ", name=" + name + ", secoundName=" + secoundName + ", work=" + work + ", email="
-    //             + email + ", phone=" + phone + ", photo=" + image + ", description=" + description + ", user=" + user
-    //             + "]";
+    // return "Contact [cId=" + cId + ", name=" + name + ", secoundName=" +
+    // secoundName + ", work=" + work + ", email="
+    // + email + ", phone=" + phone + ", photo=" + image + ", description=" +
+    // description + ", user=" + user
+    // + "]";
     // }
-
 
 }

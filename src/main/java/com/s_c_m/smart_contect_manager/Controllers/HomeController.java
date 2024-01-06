@@ -2,10 +2,10 @@ package com.s_c_m.smart_contect_manager.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-//  org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,34 +18,35 @@ import com.s_c_m.smart_contect_manager.helper.Message;
 
 import jakarta.servlet.http.HttpSession;
 
-
 @Controller
 public class HomeController {
 
+    // BCryptPasswordEncoder
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-    
+
+    // UserRepository
     @Autowired
     private UserRepository userRepository;
 
+    // ================================================================================================================
+    // Home handler
     @RequestMapping("/")
     public String home(Model model) {
         model.addAttribute("title", "home-smart contet manager");
         return "home";
     }
 
+    // ================================================================================================================
+    // about handler
     @RequestMapping("/about")
     public String about(Model model) {
         model.addAttribute("title", "about-smart contet manager");
         return "about";
     }
 
-    // @RequestMapping("/signup")
-
-    // public String signup(Model model){
-    // model.addAttribute("title","signup-smart contet manager");
-    // return "signup";
-    // }
+    // ================================================================================================================
+    // signup handler
     @RequestMapping("/signup")
     public String signup(Model model) {
         model.addAttribute("title", "signup-smart contet manager");
@@ -54,18 +55,19 @@ public class HomeController {
         return "signup";
     }
 
+    // ================================================================================================================
+    // signup process handler
     @RequestMapping(value = "/do_ragister", method = RequestMethod.POST)
     public String registerUser(
-          
+
             @ModelAttribute("user") User user,
             @RequestParam("re-pwd") String pwd,
             @RequestParam(value = "agreeterm", defaultValue = "false") boolean agreeterm,
-           
+
             Model model,
             HttpSession session) {
 
         try {
-           
 
             if (user == null) {
                 return "signup";
@@ -86,7 +88,7 @@ public class HomeController {
                 throw new DuplicateEmailException("Email address already exists");
             }
 
-            //  Handle the agreement of terms and condition
+            // Handle the agreement of terms and condition
             if (!agreeterm) {
                 model.addAttribute("checked", false);
                 System.out.println("You have not agreed to the terms and conditions");
@@ -95,14 +97,11 @@ public class HomeController {
                 model.addAttribute("checked", true);
             }
 
-        
-
             // Set some default value of User field
             user.setRole("ROLE_USER");
             user.setEnabled(true);
             user.setImageUrl("default.png");
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-
 
             // Save User in database
             userRepository.save(user);
@@ -114,7 +113,8 @@ public class HomeController {
             model.addAttribute("user", new User());
 
             // if complete All above proccess than Send Success message to Frontend
-            // session.setAttribute("message", new Message("SuccessFully Registerd !! ", "alert-success"));
+            // session.setAttribute("message", new Message("SuccessFully Registerd !! ",
+            // "alert-success"));
             return "redirect:/signin?message=SuccessFully Registerd please signin !!";
 
         } catch (Exception e) {
@@ -126,8 +126,8 @@ public class HomeController {
 
     }
 
-
-    
+    // ================================================================================================================
+    // signin process handler
     @RequestMapping("/signin")
     public String login(Model model) {
         model.addAttribute("title", "login-smart contact manager");

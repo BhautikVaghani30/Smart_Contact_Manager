@@ -9,28 +9,32 @@ import java.util.List;
 
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    // @NotBlank(message = "user name cannot be empty !!")
-    // @Size(min = 3,max = 12,message = "user name must be beetwen 3 to 12
-    // characters !! ")
+
     private String name;
+
     @Column(unique = true)
     private String email;
+
     private String password;
+
     private String role;
+
     private boolean enabled;
+
     private String imageUrl;
+    
     private String contact;
-     @Override
+
+    @Override
     public String toString() {
         return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
                 + ", enabled=" + enabled + ", imageUrl=" + imageUrl + ", contact=" + contact + ", contacts=" + contacts
                 + "]";
     }
-
-   
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Contact> contacts = new ArrayList<>();
@@ -95,7 +99,7 @@ public class User {
         this.imageUrl = imageUrl;
     }
 
-     public String getContact() {
+    public String getContact() {
         return contact;
     }
 
@@ -110,7 +114,5 @@ public class User {
     public void setContacts(List<Contact> contacts) {
         this.contacts = contacts;
     }
-
-   
 
 }

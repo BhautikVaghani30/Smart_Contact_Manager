@@ -115,3 +115,33 @@
     font-weight: bolder;
     cursor: pointer;
   }
+
+  .pass_show{position: relative} 
+
+.pass_show .ptxt { 
+
+position: absolute; 
+
+top: 50%; 
+
+right: 10px; 
+
+z-index: 1; 
+
+color: #f36c01; 
+
+margin-top: -10px; 
+
+cursor: pointer; 
+
+transition: .3s ease all; 
+
+} 
+
+.pass_show .ptxt:hover{color: #333333;} 
+
+.error{
+  padding: 15px;
+  width: 100%;
+  height: 60px;
+}

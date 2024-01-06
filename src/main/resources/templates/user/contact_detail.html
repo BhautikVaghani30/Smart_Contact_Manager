@@ -9,49 +9,109 @@
 </head>
 
 <body>
+
+    <!-- section start -->
     <section>
+        <!-- container start -->
         <div class="container mt-4" th:if="${contact}">
+            <!-- card start -->
             <div class="card">
+
+                <!-- heading start -->
                 <div class="card-header d-flex justify-content-between align-items-center">
+
+                    <!-- heading -->
                     <h4><span th:text="${contact.name}"></span> - Contact Profile</h3>
+
+                        <!-- Update and delete -->
                         <div class="d-flex justify-content-end align-items-center">
-                        <form th:action="@{'/user/update-contact/'+${contact.cId}}" method="post">
-                            <button type="submit" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></button>
-                          </form>
-                
-                          <a th:onclick="|deleteContact(${contact.cId})|" class="btn btn-outline-danger btn-sm ms-3"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                    </div>
+
+                            <!-- update form start -->
+                            <form th:action="@{'/user/update-contact/'+${contact.cId}}" method="post">
+                                <button type="submit" class="btn btn-outline-primary btn-sm"><i
+                                        class="fas fa-edit"></i></button>
+                            </form>
+                            <!-- end update form -->
+
+                            <!-- Delete button link start -->
+                            <a th:onclick="|deleteContact(${contact.cId})|"
+                                class="btn btn-outline-danger btn-sm ms-3"><i class="fa fa-trash"
+                                    aria-hidden="true"></i></a>
+                            <!-- Delete button link end  -->
+
+                        </div>
+                        <!-- End Update delete -->
+
                 </div>
+                <!-- heading end -->
+
+                <!-- card body start -->
                 <div class="card-body">
+
+                    <!-- Image and contact name start-->
                     <div class="text-center mb-4">
+
+                        <!-- display img -->
                         <img th:src="@{'/img/'+${contact.image}}" alt="User Image" class="img-fluid rounded-circle"
                             width="150" height="150">
-                            <h4 th:text="${contact.secoundName}"></h4>
+
+                        <!-- display heding -->
+                        <h4 th:text="${contact.secoundName}"></h4>
+
                     </div>
+                    <!-- Image and contact name end-->
+
+                    <!-- row start -->
                     <div class="row">
+
+                        <!-- first Column -->
                         <div class="col-md-6  mb-4">
-                            <div class="mb-3">
 
+                            <!-- contact id -->
+                            <div iv class="mb-3">
                                 <p id="userId">Contact-id :- <span th:text="${contact.cId}"></span></p>
-
                             </div>
+
+                            <!-- contact name-->
                             <div class="mb-3">
                                 <p id="userId">Name :- <span th:text="${contact.name}"></span></p>
                             </div>
+
+                            <!-- contact email -->
                             <div class="mb-3">
                                 <p id="userId">Email :- <span th:text="${contact.email}"></span></p>
                             </div>
+
+                            <!-- contact number -->
                             <div class="mb-3">
                                 <p id="userId">Contact-Number :- <span th:text="${contact.phone}"></span></p>
                             </div>
+
                         </div>
+                        <!-- first Column end -->
+
+                        <!-- secound Column start -->
                         <div class="col-md-6">
-                            <p id="userId"><b>About this contact :- </b><span th:utext="${contact.description}"></span></p>
+
+                            <!-- display disciption -->
+                            <p id="userId"><b>About this contact :- </b><span th:utext="${contact.description}"></span>
+                            </p>
+
                         </div>
+                        <!-- secound Column end -->
+
                     </div>
+                    <!-- end row -->
+
                 </div>
+                <!-- cardbody end -->
+
             </div>
+            <!-- card end -->
+
         </div>
+        <!-- container end -->
+
         <h1 class="text-center" th:if="${wrong}">you dont have permission to see this...</h1>
         <h1 class="text-center" th:if="${contactNotFound}">you dont have permission to see this...</h1>
 
